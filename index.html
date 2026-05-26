@@ -15,40 +15,26 @@
             --primary: #FF3838;
             --primary-rgb: 255, 56, 56;
             --primary-dark: #D62525;
-            --primary-light: #FFECEB;
-            --secondary: #185FA5;
-            --secondary-rgb: 24, 95, 165;
-            --accent: #27AE60;
-            --accent-rgb: 39, 174, 96;
-            --warning: #F2994A;
-            --text-main: #0F0F11;
-            --text-muted: #5F5E6A;
-            --bg-body: #FAFAFB;
-            --bg-card: #FFFFFF;
-            --border-color: #EAEAEE;
+            --primary-light: rgba(255, 56, 56, 0.15);
+            --secondary: #3B82F6;
+            --secondary-rgb: 59, 130, 246;
+            --accent: #10B981;
+            --accent-rgb: 16, 185, 129;
+            --warning: #F59E0B;
+            --text-main: #F4F4F5;
+            --text-muted: #A1A1AA;
+            --bg-body: #09090B;
+            --bg-card: #121215;
+            --border-color: #27272A;
             --border-radius-lg: 24px;
             --border-radius-md: 16px;
             --border-radius-sm: 8px;
             --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.03);
-            --shadow-md: 0 12px 24px rgba(0, 0, 0, 0.05);
-            --shadow-lg: 0 20px 40px rgba(255, 56, 56, 0.08);
-            --glass-bg: rgba(255, 255, 255, 0.75);
-            --glass-border: rgba(255, 255, 255, 0.5);
-        }
-
-        /* Dark Mode variables if needed in future */
-        [data-theme="dark"] {
-            --bg-body: #09090B;
-            --bg-card: #121215;
-            --text-main: #F4F4F5;
-            --text-muted: #A1A1AA;
-            --border-color: #27272A;
-            --glass-bg: rgba(18, 18, 21, 0.8);
-            --glass-border: rgba(255, 255, 255, 0.05);
             --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.2);
-            --shadow-md: 0 12px 24px rgba(0, 0, 0, 0.3);
+            --shadow-md: 0 12px 24px rgba(0, 0, 0, 0.35);
             --shadow-lg: 0 20px 40px rgba(255, 56, 56, 0.15);
+            --glass-bg: rgba(18, 18, 21, 0.75);
+            --glass-border: rgba(255, 255, 255, 0.05);
         }
 
         * {
@@ -132,23 +118,7 @@
             background: var(--primary-light);
         }
 
-        .theme-toggle {
-            cursor: pointer;
-            font-size: 1.25rem;
-            color: var(--text-main);
-            background: none;
-            border: none;
-            padding: 8px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: var(--transition);
-        }
-
-        .theme-toggle:hover {
-            background: var(--border-color);
-        }
+        /* Theme toggle removed - Dark theme default */
 
         /* Hero Section */
         .hero {
@@ -380,21 +350,21 @@
         }
 
         .alert-banner.red {
-            background: #FFF5F5;
+            background: rgba(255, 56, 56, 0.08);
             border-color: var(--primary);
-            color: #5C1D1D;
+            color: #FF8A8A;
         }
 
         .alert-banner.amber {
-            background: #FFFBF0;
+            background: rgba(245, 158, 11, 0.08);
             border-color: var(--warning);
-            color: #613C16;
+            color: #FCD34D;
         }
 
         .alert-banner.green {
-            background: #F0FFF5;
+            background: rgba(16, 185, 129, 0.08);
             border-color: var(--accent);
-            color: #1E4E2C;
+            color: #6EE7B7;
         }
 
         .alert-icon {
@@ -908,9 +878,6 @@
                 <i class="ti ti-plane"></i> Flights & Visa
             </button>
         </div>
-        <button class="theme-toggle" onclick="toggleTheme()">
-            <i class="ti ti-sun" id="theme-icon"></i>
-        </button>
     </nav>
 
     <!-- Hero Header -->
@@ -1433,18 +1400,7 @@
             window.scrollTo({ top: 400, behavior: 'smooth' });
         }
 
-        // Dark Theme toggling
-        function toggleTheme() {
-            const body = document.body;
-            const icon = document.getElementById('theme-icon');
-            if(body.getAttribute('data-theme') === 'dark') {
-                body.removeAttribute('data-theme');
-                icon.className = 'ti ti-sun';
-            } else {
-                body.setAttribute('data-theme', 'dark');
-                icon.className = 'ti ti-moon';
-            }
-        }
+        // Dark theme active by default
 
         // Live Budget Estimator
         function calculateBudget() {

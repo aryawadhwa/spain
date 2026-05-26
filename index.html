@@ -1,0 +1,1388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Tomatina 2026 | Ultimate India to Spain Travel Guide & Planner</title>
+    <meta name="description" content="The most premium, interactive travel guide and budget planner for Indian travelers attending La Tomatina 2026 in Buñol, Spain. Visa guides, flight trackers, and custom budget estimators.">
+    
+    <!-- Google Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+    
+    <style>
+        :root {
+            --primary: #FF3838;
+            --primary-rgb: 255, 56, 56;
+            --primary-dark: #D62525;
+            --primary-light: #FFECEB;
+            --secondary: #185FA5;
+            --secondary-rgb: 24, 95, 165;
+            --accent: #27AE60;
+            --accent-rgb: 39, 174, 96;
+            --warning: #F2994A;
+            --text-main: #0F0F11;
+            --text-muted: #5F5E6A;
+            --bg-body: #FAFAFB;
+            --bg-card: #FFFFFF;
+            --border-color: #EAEAEE;
+            --border-radius-lg: 24px;
+            --border-radius-md: 16px;
+            --border-radius-sm: 8px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.03);
+            --shadow-md: 0 12px 24px rgba(0, 0, 0, 0.05);
+            --shadow-lg: 0 20px 40px rgba(255, 56, 56, 0.08);
+            --glass-bg: rgba(255, 255, 255, 0.75);
+            --glass-border: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Dark Mode variables if needed in future */
+        [data-theme="dark"] {
+            --bg-body: #09090B;
+            --bg-card: #121215;
+            --text-main: #F4F4F5;
+            --text-muted: #A1A1AA;
+            --border-color: #27272A;
+            --glass-bg: rgba(18, 18, 21, 0.8);
+            --glass-border: rgba(255, 255, 255, 0.05);
+            --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.2);
+            --shadow-md: 0 12px 24px rgba(0, 0, 0, 0.3);
+            --shadow-lg: 0 20px 40px rgba(255, 56, 56, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Outfit', sans-serif;
+            color: var(--text-main);
+            font-weight: 700;
+        }
+
+        body {
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+            transition: background-color 0.3s ease;
+        }
+
+        /* Sticky Premium Navigation */
+        nav.navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 72px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 2rem;
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .nav-logo span {
+            color: var(--text-main);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .nav-btn {
+            background: none;
+            border: none;
+            padding: 8px 16px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            border-radius: var(--border-radius-sm);
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .nav-btn.active, .nav-btn:hover {
+            color: var(--primary);
+            background: var(--primary-light);
+        }
+
+        .theme-toggle {
+            cursor: pointer;
+            font-size: 1.25rem;
+            color: var(--text-main);
+            background: none;
+            border: none;
+            padding: 8px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .theme-toggle:hover {
+            background: var(--border-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 100vh;
+            min-height: 700px;
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.85)), 
+                        url('https://images.unsplash.com/photo-1590403759281-22878cc12e9b?auto=format&fit=crop&q=80') center/cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: #fff;
+            padding: 2rem;
+            overflow: hidden;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 120px;
+            background: linear-gradient(transparent, var(--bg-body));
+            pointer-events: none;
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 7vw, 6.5rem);
+            font-weight: 900;
+            color: #fff;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+            letter-spacing: -2px;
+            text-shadow: 0 8px 30px rgba(0,0,0,0.5);
+            animation: slideDown 1s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .hero h1 span {
+            color: var(--primary);
+            background: linear-gradient(to right, #ff4d4d, #ff3838);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p.tagline {
+            font-size: clamp(1rem, 2.5vw, 1.4rem);
+            font-weight: 400;
+            color: #E2E8F0;
+            max-width: 700px;
+            margin-bottom: 3rem;
+            letter-spacing: 0.5px;
+            animation: slideUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.2s backwards;
+        }
+
+        /* Animated Countdown Card */
+        .countdown-container {
+            display: flex;
+            gap: 1.5rem;
+            background: rgba(15, 15, 17, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            padding: 1.5rem 3rem;
+            border-radius: var(--border-radius-lg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+            animation: scaleIn 1s cubic-bezier(0.16, 1, 0.3, 1) 0.4s backwards;
+        }
+
+        .countdown-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-width: 90px;
+        }
+
+        .countdown-item span {
+            font-size: clamp(2rem, 5vw, 3.2rem);
+            font-weight: 800;
+            font-family: 'Outfit', sans-serif;
+            background: linear-gradient(135deg, #fff, #CBD5E1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1;
+        }
+
+        .countdown-item label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            font-weight: 700;
+            color: var(--primary);
+            letter-spacing: 2px;
+            margin-top: 6px;
+        }
+
+        /* App Container */
+        .app-wrapper {
+            max-width: 1400px;
+            margin: -60px auto 0;
+            padding: 0 2rem 5rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Quick Stats Grid */
+        .quick-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .stat-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius-md);
+            padding: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1.25rem;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+            border-color: rgba(var(--primary-rgb), 0.2);
+        }
+
+        .stat-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: var(--border-radius-md);
+            background: var(--primary-light);
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .stat-info h4 {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .stat-info p {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--text-main);
+            margin-top: 2px;
+        }
+
+        /* Section Container Styles */
+        .section-panel {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius-lg);
+            padding: 3rem;
+            box-shadow: var(--shadow-md);
+            display: none;
+            animation: fadeIn 0.4s ease;
+            margin-bottom: 2rem;
+        }
+
+        .section-panel.active {
+            display: block;
+        }
+
+        .panel-header {
+            margin-bottom: 2.5rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .panel-header h2 {
+            font-size: 2rem;
+            position: relative;
+        }
+
+        .panel-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: -1.5rem;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--primary);
+        }
+
+        .panel-header p {
+            color: var(--text-muted);
+            margin-top: 8px;
+            font-size: 1.05rem;
+        }
+
+        /* --- TAB 1: URGENT --- */
+        .urgent-grid {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 2.5rem;
+        }
+
+        @media (max-width: 992px) {
+            .urgent-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .alert-banner {
+            border-radius: var(--border-radius-md);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            gap: 1.25rem;
+            border-left: 5px solid;
+            transition: var(--transition);
+        }
+
+        .alert-banner.red {
+            background: #FFF5F5;
+            border-color: var(--primary);
+            color: #5C1D1D;
+        }
+
+        .alert-banner.amber {
+            background: #FFFBF0;
+            border-color: var(--warning);
+            color: #613C16;
+        }
+
+        .alert-banner.green {
+            background: #F0FFF5;
+            border-color: var(--accent);
+            color: #1E4E2C;
+        }
+
+        .alert-icon {
+            font-size: 1.6rem;
+            flex-shrink: 0;
+        }
+
+        .alert-content h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 6px;
+            color: inherit;
+        }
+
+        .alert-content p {
+            font-size: 0.95rem;
+            line-height: 1.5;
+            color: inherit;
+        }
+
+        .alert-content a {
+            color: inherit;
+            font-weight: 700;
+            text-decoration: underline;
+        }
+
+        /* Action Checklist Card */
+        .checklist-card {
+            background: var(--bg-body);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius-md);
+            padding: 2rem;
+        }
+
+        .checklist-title {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+        }
+
+        .readiness-badge {
+            background: var(--primary-light);
+            color: var(--primary);
+            padding: 6px 12px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+
+        .checklist-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .checklist-item:last-child {
+            border-bottom: none;
+        }
+
+        .checklist-checkbox {
+            margin-top: 4px;
+            width: 20px;
+            height: 20px;
+            border-radius: 4px;
+            border: 2px solid var(--primary);
+            cursor: pointer;
+            accent-color: var(--primary);
+        }
+
+        .checklist-text {
+            font-size: 0.95rem;
+        }
+
+        .checklist-text strong {
+            color: var(--text-main);
+        }
+
+        .checklist-text p {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            margin-top: 4px;
+        }
+
+        /* --- TAB 2: ITINERARY --- */
+        .timeline {
+            position: relative;
+            margin: 2rem 0;
+            padding-left: 2rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 8px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--border-color);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 3rem;
+            padding-left: 2rem;
+            transition: var(--transition);
+        }
+
+        .timeline-marker {
+            position: absolute;
+            left: -2rem;
+            top: 0;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: var(--bg-card);
+            border: 4px solid var(--primary);
+            z-index: 2;
+            transition: var(--transition);
+        }
+
+        .timeline-item.festival .timeline-marker {
+            border-color: var(--primary-dark);
+            box-shadow: 0 0 15px var(--primary);
+            background: var(--primary);
+        }
+
+        .timeline-date {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 4px;
+        }
+
+        .timeline-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .timeline-badge {
+            font-size: 0.75rem;
+            padding: 2px 8px;
+            border-radius: 50px;
+            font-weight: 600;
+        }
+
+        .timeline-badge.flight { background: #E6F1FB; color: #185FA5; }
+        .timeline-badge.train { background: #F1EFE8; color: #5F5E5A; }
+        .timeline-badge.party { background: #FFECEB; color: #A32D2D; }
+
+        .timeline-content {
+            background: var(--bg-body);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius-md);
+            padding: 1.5rem;
+            margin-top: 10px;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+        }
+
+        .timeline-item:hover .timeline-content {
+            transform: scale(1.01);
+            border-color: rgba(var(--primary-rgb), 0.2);
+            box-shadow: var(--shadow-md);
+        }
+
+        .timeline-item:hover .timeline-marker {
+            transform: scale(1.3);
+        }
+
+        /* --- TAB 3: SMART BUDGET ESTIMATOR --- */
+        .budget-container {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 3rem;
+        }
+
+        @media (max-width: 992px) {
+            .budget-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .calc-panel {
+            background: var(--bg-body);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius-md);
+            padding: 2.5rem;
+        }
+
+        .calc-group {
+            margin-bottom: 2rem;
+        }
+
+        .calc-group label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 10px;
+        }
+
+        .calc-group label span {
+            color: var(--primary);
+        }
+
+        .calc-slider {
+            width: 100%;
+            height: 6px;
+            background: var(--border-color);
+            outline: none;
+            border-radius: 10px;
+            -webkit-appearance: none;
+            accent-color: var(--primary);
+        }
+
+        .budget-breakdown {
+            background: var(--primary-light);
+            border: 1px solid rgba(var(--primary-rgb), 0.15);
+            border-radius: var(--border-radius-md);
+            padding: 2.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .breakdown-title h3 {
+            font-size: 1.5rem;
+            color: var(--primary-dark);
+            margin-bottom: 1.5rem;
+        }
+
+        .total-display {
+            text-align: center;
+            padding: 2rem 0;
+            border-bottom: 1.5px dashed rgba(var(--primary-rgb), 0.2);
+            margin-bottom: 2rem;
+        }
+
+        .total-display .amount-inr {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: var(--primary-dark);
+            line-height: 1;
+        }
+
+        .total-display .amount-eur {
+            font-size: 1.3rem;
+            color: var(--text-muted);
+            margin-top: 8px;
+            font-weight: 600;
+        }
+
+        .breakdown-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .breakdown-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.95rem;
+            color: var(--text-muted);
+        }
+
+        .breakdown-row strong {
+            color: var(--text-main);
+        }
+
+        /* --- TAB 4: ACCOMMODATION --- */
+        .stays-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .stay-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius-md);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+        }
+
+        .stay-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-md);
+            border-color: rgba(var(--primary-rgb), 0.2);
+        }
+
+        .stay-img {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .stay-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: var(--primary);
+            color: #fff;
+            padding: 4px 10px;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .stay-info {
+            padding: 1.5rem;
+        }
+
+        .stay-city {
+            font-size: 0.75rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--primary);
+            margin-bottom: 6px;
+        }
+
+        .stay-name {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .stay-price {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+        }
+
+        .stay-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 1.25rem;
+        }
+
+        .stay-tag {
+            font-size: 0.75rem;
+            background: var(--bg-body);
+            color: var(--text-muted);
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        .stay-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--secondary);
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-decoration: none;
+        }
+
+        .stay-link:hover {
+            text-decoration: underline;
+        }
+
+        /* --- TAB 5: FLIGHTS & VISA --- */
+        .flights-visa-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 3rem;
+        }
+
+        @media (max-width: 992px) {
+            .flights-visa-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Visual Progress Tracker */
+        .progress-tracker {
+            position: relative;
+            padding-left: 2.5rem;
+        }
+
+        .progress-tracker::before {
+            content: '';
+            position: absolute;
+            left: 12px;
+            top: 10px;
+            bottom: 10px;
+            width: 2px;
+            background: var(--border-color);
+        }
+
+        .step-container {
+            position: relative;
+            margin-bottom: 2.5rem;
+        }
+
+        .step-circle {
+            position: absolute;
+            left: -2.5rem;
+            top: 2px;
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            background: var(--bg-card);
+            border: 2.5px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: 800;
+            color: var(--text-muted);
+            z-index: 2;
+            transition: var(--transition);
+        }
+
+        .step-container.active .step-circle {
+            border-color: var(--primary);
+            background: var(--primary);
+            color: #fff;
+        }
+
+        .step-content h4 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .step-content p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        /* Footer */
+        footer {
+            background: #0F0F11;
+            color: #8C8C96;
+            text-align: center;
+            padding: 3rem 2rem;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            margin-top: 5rem;
+        }
+
+        footer h3 {
+            color: #fff;
+            margin-bottom: 10px;
+        }
+
+        footer p {
+            font-size: 0.9rem;
+        }
+
+        /* Animation Keyframes */
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes scaleIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Sticky Navigation -->
+    <nav class="navbar">
+        <a href="#" class="nav-logo">
+            <i class="ti ti-tomato"></i>
+            <span>Tomatina<span>2026</span></span>
+        </a>
+        <div class="nav-links">
+            <button class="nav-btn active" onclick="switchTab('urgent', this)">
+                <i class="ti ti-alert-triangle"></i> Urgency
+            </button>
+            <button class="nav-btn" onclick="switchTab('itinerary', this)">
+                <i class="ti ti-calendar"></i> Itinerary
+            </button>
+            <button class="nav-btn" onclick="switchTab('budget', this)">
+                <i class="ti ti-calculator"></i> Budget Planner
+            </button>
+            <button class="nav-btn" onclick="switchTab('stays', this)">
+                <i class="ti ti-home"></i> Accommodation
+            </button>
+            <button class="nav-btn" onclick="switchTab('flights', this)">
+                <i class="ti ti-plane"></i> Flights & Visa
+            </button>
+        </div>
+        <button class="theme-toggle" onclick="toggleTheme()">
+            <i class="ti ti-sun" id="theme-icon"></i>
+        </button>
+    </nav>
+
+    <!-- Hero Header -->
+    <header class="hero">
+        <h1>La Tomatina <span>2026</span></h1>
+        <p class="tagline">The Ultimate India-to-Spain Survival & Budget Travel Guide. Plan the world's biggest food fight like a pro.</p>
+        
+        <div class="countdown-container" id="countdown">
+            <div class="countdown-item">
+                <span id="days">00</span>
+                <label>Days</label>
+            </div>
+            <div class="countdown-item">
+                <span id="hours">00</span>
+                <label>Hours</label>
+            </div>
+            <div class="countdown-item">
+                <span id="minutes">00</span>
+                <label>Minutes</label>
+            </div>
+            <div class="countdown-item">
+                <span id="seconds">00</span>
+                <label>Seconds</label>
+            </div>
+        </div>
+    </header>
+
+    <div class="app-wrapper">
+        <!-- Quick Stats Banner -->
+        <div class="quick-stats">
+            <div class="stat-card">
+                <div class="stat-icon"><i class="ti ti-ticket"></i></div>
+                <div class="stat-info">
+                    <h4>Tomatina Entry</h4>
+                    <p>€45</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon"><i class="ti ti-currency-rupee"></i></div>
+                <div class="stat-info">
+                    <h4>Estimated Budget</h4>
+                    <p id="stat-budget">₹1.35L - 1.45L</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon"><i class="ti ti-calendar-event"></i></div>
+                <div class="stat-info">
+                    <h4>Festival Date</h4>
+                    <p>Aug 26, 2026</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon"><i class="ti ti-id"></i></div>
+                <div class="stat-info">
+                    <h4>BLS Visa Time</h4>
+                    <p>15-25 Days</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 1: URGENT / HOMEPAGE -->
+        <div id="urgent" class="section-panel active">
+            <div class="panel-header">
+                <div>
+                    <h2>Action Plan & Critical Milestones</h2>
+                    <p>Immediate checklist and tasks required for August 2026 Spain planning.</p>
+                </div>
+            </div>
+
+            <div class="urgent-grid">
+                <div class="alerts-section">
+                    <div class="alert-banner red">
+                        <span class="alert-icon"><i class="ti ti-ticket"></i></span>
+                        <div class="alert-content">
+                            <h3>1. Tomatina Tickets + Bus from Valencia — Buy Now</h3>
+                            <p>Official bus package with entry is **€45** on the official website. Tickets historically sell out between March–June. Ensure you check availability immediately at <a href="https://tomatina.es/en/" target="_blank">tomatina.es/en</a> or book verified packages via <a href="https://www.latomatinatours.com/" target="_blank">latomatinatours.com</a>.</p>
+                        </div>
+                    </div>
+
+                    <div class="alert-banner red">
+                        <span class="alert-icon"><i class="ti ti-id-badge"></i></span>
+                        <div class="alert-content">
+                            <h3>2. Schengen Visa — Apply by June 10</h3>
+                            <p>Spanish Schengen Visa processing via **BLS International** takes 15–25 working days. Book your Bengaluru visa appointment slot now to ensure safe travel approval by mid-August. Learn more at <a href="https://india.blsspainvisa.com/" target="_blank">india.blsspainvisa.com</a>.</p>
+                        </div>
+                    </div>
+
+                    <div class="alert-banner amber">
+                        <span class="alert-icon"><i class="ti ti-plane-departure"></i></span>
+                        <div class="alert-content">
+                            <h3>3. Flight Outbound Price Alert</h3>
+                            <p>Qatar Airways outbound flights (e.g. Aug 18) are currently sitting at competitive rates (**₹32,494** one-way). Track or lock in flights immediately as late-summer European fares spike fast.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="checklist-section">
+                    <div class="checklist-card">
+                        <div class="checklist-title">
+                            <h3>Tomatina Readiness Score</h3>
+                            <span class="readiness-badge" id="readiness-score">0% Ready</span>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" class="checklist-checkbox" id="chk-ticket" onchange="updateReadiness()">
+                            <div class="checklist-text">
+                                <strong>Secure official Tomatina entry wristband</strong>
+                                <p>Booked on official site or authorized tour package.</p>
+                            </div>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" class="checklist-checkbox" id="chk-visa" onchange="updateReadiness()">
+                            <div class="checklist-text">
+                                <strong>BLS Spain Schengen Visa Slot</strong>
+                                <p>Scheduled appointment in Bengaluru or nearest hub.</p>
+                            </div>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" class="checklist-checkbox" id="chk-flight" onchange="updateReadiness()">
+                            <div class="checklist-text">
+                                <strong>Flight ticket booked</strong>
+                                <p>Outbound locked (Aug 18 Qatar option recommended).</p>
+                            </div>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" class="checklist-checkbox" id="chk-hostel" onchange="updateReadiness()">
+                            <div class="checklist-text">
+                                <strong>Valencia hostel reservation confirmed</strong>
+                                <p>Secured early booking for peak dates (Aug 24-28).</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 2: ITINERARY -->
+        <div id="itinerary" class="section-panel">
+            <div class="panel-header">
+                <div>
+                    <h2>12-Night Multi-City Route Map</h2>
+                    <p>A balanced travel itinerary starting from Barcelona, moving to Valencia for the festival, and concluding in Madrid.</p>
+                </div>
+            </div>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-date">Tue, Aug 18</div>
+                    <div class="timeline-title">Depart India <span class="timeline-badge flight">Flight</span></div>
+                    <div class="timeline-content">
+                        Board afternoon flight from Delhi (DEL 15:55) with Qatar Airways. Transit through Doha (DOH). Enjoy a smooth transition to Europe.
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-date">Wed, Aug 19</div>
+                    <div class="timeline-title">Arrive Barcelona</div>
+                    <div class="timeline-content">
+                        Land at BCN Airport at 07:30. Take Metro L9 Sud straight to your central hostel. Recover, take a slow afternoon stroll in Gothic Quarter.
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-date">Thu, Aug 20</div>
+                    <div class="timeline-title">Barcelona — Gaudí Architecture</div>
+                    <div class="timeline-content">
+                        Explore La Sagrada Família (pre-booked ticket essential, €26) and Park Güell. Have a tapas lunch at Mercat de la Boqueria.
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-date">Mon, Aug 24</div>
+                    <div class="timeline-title">Barcelona → Valencia <span class="timeline-badge train">Train</span></div>
+                    <div class="timeline-content">
+                        Board modern Renfe train (~3.5 hr, €25). Arrive in Valencia in the afternoon. Check in to your social hostel. Walk along the lush Turia Riverbed gardens.
+                    </div>
+                </div>
+
+                <div class="timeline-item festival">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-date">Wed, Aug 26</div>
+                    <div class="timeline-title" style="color: var(--primary);">LA TOMATINA FESTIVAL <span class="timeline-badge party">Buñol</span></div>
+                    <div class="timeline-content" style="border-left: 4px solid var(--primary);">
+                        <strong>The Big Event!</strong> Board official early coach from Valencia (07:00). Join the crowds at Plaza del Pueblo. Greased pole challenge at 10:00. Tomato trucks roll in at 12:00. Shower up, return in afternoon, and hit the official Afterparty.
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-date">Sat, Aug 29</div>
+                    <div class="timeline-title">Valencia → Madrid <span class="timeline-badge train">Train</span></div>
+                    <div class="timeline-content">
+                        Take the high-speed AVE train (1.5 hr, €20) directly to Madrid Atocha station. Spend the evening along historic Gran Vía and Plaza Mayor.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 3: SMART BUDGET ESTIMATOR -->
+        <div id="budget" class="section-panel">
+            <div class="panel-header">
+                <div>
+                    <h2>Interactive Cost Planner</h2>
+                    <p>Adjust variables dynamically to see real-time price changes based on exchange rates and flight updates.</p>
+                </div>
+            </div>
+
+            <div class="budget-container">
+                <div class="calc-panel">
+                    <div class="calc-group">
+                        <label>Outbound Flight Cost (INR) <span id="lbl-flight">₹32,494</span></label>
+                        <input type="range" class="calc-slider" id="slide-flight" min="25000" max="65000" step="500" value="32494" oninput="calculateBudget()">
+                    </div>
+
+                    <div class="calc-group">
+                        <label>Hostel Nights (Total 12) <span id="lbl-nights">12 Nights</span></label>
+                        <input type="range" class="calc-slider" id="slide-nights" min="8" max="15" step="1" value="12" oninput="calculateBudget()">
+                    </div>
+
+                    <div class="calc-group">
+                        <label>Daily Spending Allowance (EUR) <span id="lbl-spend">€25 / day</span></label>
+                        <input type="range" class="calc-slider" id="slide-spend" min="15" max="75" step="5" value="25" oninput="calculateBudget()">
+                    </div>
+                </div>
+
+                <div class="budget-breakdown">
+                    <div class="breakdown-title">
+                        <h3>Spain Trip Estimate</h3>
+                    </div>
+                    <div class="total-display">
+                        <div class="amount-inr" id="total-inr">₹1,18,740</div>
+                        <div class="amount-eur" id="total-eur">€1,276 total spend</div>
+                    </div>
+                    <div class="breakdown-list">
+                        <div class="breakdown-row">
+                            <span>Schengen Visa & Insurance:</span>
+                            <strong id="val-visa">₹13,847</strong>
+                        </div>
+                        <div class="breakdown-row">
+                            <span>Hostel Stays Total:</span>
+                            <strong id="val-stays">₹24,552</strong>
+                        </div>
+                        <div class="breakdown-row">
+                            <span>Tomatina Ticket & Coach:</span>
+                            <strong>₹4,185</strong>
+                        </div>
+                        <div class="breakdown-row">
+                            <span>Internal Spanish Rail (AVE):</span>
+                            <strong>₹5,115</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 4: ACCOMMODATION -->
+        <div id="stays" class="section-panel">
+            <div class="panel-header">
+                <div>
+                    <h2>Top Rated Hostels for Solo Backpackers</h2>
+                    <p>Highly social properties curated based on proximity, safety, and vibrant travel communities.</p>
+                </div>
+            </div>
+
+            <div class="stays-grid">
+                <div class="stay-card">
+                    <div class="stay-img" style="background-image: url('https://images.unsplash.com/photo-1555854877-bab0e564b8d5?auto=format&fit=crop&q=80');">
+                        <span class="stay-badge">9.2 Rated</span>
+                    </div>
+                    <div class="stay-info">
+                        <div class="stay-city">Barcelona</div>
+                        <h3 class="stay-name">Sant Jordi Hostel</h3>
+                        <p class="stay-price">~€22 - €28 per night</p>
+                        <div class="stay-tags">
+                            <span class="stay-tag">Skate Theme</span>
+                            <span class="stay-tag">Social Dinner</span>
+                            <span class="stay-tag">Top-Rated</span>
+                        </div>
+                        <a href="https://www.santjordihostels.com/" target="_blank" class="stay-link">Visit Official Site <i class="ti ti-external-link"></i></a>
+                    </div>
+                </div>
+
+                <div class="stay-card">
+                    <div class="stay-img" style="background-image: url('https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?auto=format&fit=crop&q=80');">
+                        <span class="stay-badge">9.0 Rated</span>
+                    </div>
+                    <div class="stay-info">
+                        <div class="stay-city">Valencia</div>
+                        <h3 class="stay-name">Purple Nest Hostel</h3>
+                        <p class="stay-price">~€20 - €25 per night</p>
+                        <div class="stay-tags">
+                            <span class="stay-tag">Center Location</span>
+                            <span class="stay-tag">Bar Lounge</span>
+                            <span class="stay-tag">Tomatina Hub</span>
+                        </div>
+                        <a href="https://www.hostelworld.com/st/hostels/p/234/purple-nest-hostel/" target="_blank" class="stay-link">Book on Hostelworld <i class="ti ti-external-link"></i></a>
+                    </div>
+                </div>
+
+                <div class="stay-card">
+                    <div class="stay-img" style="background-image: url('https://images.unsplash.com/photo-1546548970-71785318a17b?auto=format&fit=crop&q=80');">
+                        <span class="stay-badge">9.1 Rated</span>
+                    </div>
+                    <div class="stay-info">
+                        <div class="stay-city">Madrid</div>
+                        <h3 class="stay-name">Way Hostel Madrid</h3>
+                        <p class="stay-price">~€18 - €25 per night</p>
+                        <div class="stay-tags">
+                            <span class="stay-tag">Social Events</span>
+                            <span class="stay-tag">Near Metro</span>
+                            <span class="stay-tag">Free Tours</span>
+                        </div>
+                        <a href="https://www.wayhostel.com/" target="_blank" class="stay-link">Visit Official Site <i class="ti ti-external-link"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 5: FLIGHTS & VISA -->
+        <div id="flights" class="section-panel">
+            <div class="panel-header">
+                <div>
+                    <h2>Transit & Visa Processing Hub</h2>
+                    <p>Step-by-step roadmap to securing flights and Spain's Schengen travel visa from India.</p>
+                </div>
+            </div>
+
+            <div class="flights-visa-grid">
+                <div class="progress-tracker">
+                    <div class="step-container active">
+                        <div class="step-circle">1</div>
+                        <div class="step-content">
+                            <h4>Lock Outbound Flights (Aug 18 Recommendation)</h4>
+                            <p>Securing the Delhi-to-Barcelona leg early controls budget variances. Currently **₹32,494** via Qatar Airways (operated by Indigo via Doha).</p>
+                        </div>
+                    </div>
+
+                    <div class="step-container">
+                        <div class="step-circle">2</div>
+                        <div class="step-content">
+                            <h4>Schedule BLS Spain Visa Appointment</h4>
+                            <p>Slots open roughly 90 days before departure. Visit the official BLS India portal to secure your day slot in Bengaluru or Delhi.</p>
+                        </div>
+                    </div>
+
+                    <div class="step-container">
+                        <div class="step-circle">3</div>
+                        <div class="step-content">
+                            <h4>Prepare Document Package</h4>
+                            <p>Compile bank statements (6 months, signed by bank), cover letter, flight itineraries, hostel reservation vouchers, college credentials (if student), and valid travel insurance.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flight-display">
+                    <div class="checklist-card" style="border: 1px solid rgba(var(--accent-rgb), 0.3);">
+                        <h3 style="color: var(--accent); margin-bottom: 12px;"><i class="ti ti-plane-arrival"></i> Best Outbound Option Tracked</h3>
+                        <p style="font-size: 0.95rem; margin-bottom: 1.5rem;">Qatar Airways round-trip and one-way options are highly optimal for August peak season. Currently matching flight details below:</p>
+                        <div style="background: var(--bg-body); padding: 1.25rem; border-radius: var(--border-radius-sm); border: 1px solid var(--border-color);">
+                            <strong style="color: var(--text-main);">Qatar Airways (operated by IndiGo)</strong>
+                            <div style="font-size: 0.85rem; color: var(--text-muted); margin-top: 6px;">DEL 15:55 → 19h 05m Transit → BCN 07:30⁺¹</div>
+                            <div style="font-weight: 800; color: var(--accent); font-size: 1.3rem; margin-top: 10px;">₹32,494 One-Way</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <h3>La Tomatina 2026 Ultimate Guide</h3>
+        <p>Built for the travel community. Have a glorious and safe food fight in Spain!</p>
+    </footer>
+
+    <!-- Interactive JS scripts -->
+    <script>
+        // Countdown Clock
+        const eventDate = new Date('August 26, 2026 11:00:00 GMT+0200').getTime();
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = eventDate - now;
+
+            if (distance < 0) {
+                document.getElementById('countdown').innerHTML = '<h2>The festival has begun!</h2>';
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById('days').innerText = String(days).padStart(2, '0');
+            document.getElementById('hours').innerText = String(hours).padStart(2, '0');
+            document.getElementById('minutes').innerText = String(minutes).padStart(2, '0');
+            document.getElementById('seconds').innerText = String(seconds).padStart(2, '0');
+        }
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // Premium Navigation Tabs
+        function switchTab(tabId, el) {
+            document.querySelectorAll('.section-panel').forEach(panel => {
+                panel.classList.remove('active');
+            });
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            document.getElementById(tabId).classList.add('active');
+            el.classList.add('active');
+            window.scrollTo({ top: 400, behavior: 'smooth' });
+        }
+
+        // Dark Theme toggling
+        function toggleTheme() {
+            const body = document.body;
+            const icon = document.getElementById('theme-icon');
+            if(body.getAttribute('data-theme') === 'dark') {
+                body.removeAttribute('data-theme');
+                icon.className = 'ti ti-sun';
+            } else {
+                body.setAttribute('data-theme', 'dark');
+                icon.className = 'ti ti-moon';
+            }
+        }
+
+        // Live Budget Estimator
+        function calculateBudget() {
+            const flight = parseInt(document.getElementById('slide-flight').value);
+            const nights = parseInt(document.getElementById('slide-nights').value);
+            const spend = parseInt(document.getElementById('slide-spend').value);
+
+            document.getElementById('lbl-flight').innerText = `₹${flight.toLocaleString('en-IN')}`;
+            document.getElementById('lbl-nights').innerText = `${nights} Nights`;
+            document.getElementById('lbl-spend').innerText = `€${spend} / day`;
+
+            const exchangeRate = 93; // 1 EUR = 93 INR
+            const visaInsurance = 13847; // Fixed cost
+            const tomatinaTicket = 4185; // Fixed cost (45 EUR)
+            const railTickets = 5115; // Fixed cost (55 EUR)
+            
+            const hostelCostPerNightInr = 2050; // Avg 22 EUR/night
+            const totalHostels = nights * hostelCostPerNightInr;
+            const totalSpendInr = spend * 12 * exchangeRate; // Assuming standard 12-day trip spend window
+            
+            const totalBudget = flight + visaInsurance + totalHostels + tomatinaTicket + railTickets + totalSpendInr;
+            const totalEur = Math.round(totalBudget / exchangeRate);
+
+            document.getElementById('total-inr').innerText = `₹${totalBudget.toLocaleString('en-IN')}`;
+            document.getElementById('total-eur').innerText = `€${totalEur.toLocaleString()} total spend`;
+            document.getElementById('val-stays').innerText = `₹${totalHostels.toLocaleString('en-IN')}`;
+        }
+        calculateBudget();
+
+        // Checklist readiness index
+        function updateReadiness() {
+            const total = 4;
+            let checked = 0;
+            if(document.getElementById('chk-ticket').checked) checked++;
+            if(document.getElementById('chk-visa').checked) checked++;
+            if(document.getElementById('chk-flight').checked) checked++;
+            if(document.getElementById('chk-hostel').checked) checked++;
+
+            const score = Math.round((checked / total) * 100);
+            document.getElementById('readiness-score').innerText = `${score}% Ready`;
+        }
+    </script>
+</body>
+</html>

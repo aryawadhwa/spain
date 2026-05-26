@@ -1,0 +1,547 @@
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font-sans)}
+.tabs{display:flex;gap:4px;border-bottom:0.5px solid var(--color-border-tertiary);margin-bottom:1.5rem;flex-wrap:wrap}
+.tab{padding:8px 14px;font-size:13px;cursor:pointer;border:none;background:none;color:var(--color-text-secondary);border-bottom:2px solid transparent;transition:all 0.15s}
+.tab.active{color:#C0392B;border-bottom:2px solid #C0392B;font-weight:500}
+.tab:hover:not(.active){color:var(--color-text-primary)}
+.panel{display:none}.panel.active{display:block}
+.alert-red{background:#FFF5F5;border:0.5px solid #F0A0A0;border-left:3px solid #C0392B;border-radius:var(--border-radius-md);padding:12px 14px;margin-bottom:12px}
+.alert-amber{background:#FFFBF0;border:0.5px solid #F5C75F;border-left:3px solid #E09B1F;border-radius:var(--border-radius-md);padding:12px 14px;margin-bottom:12px}
+.alert-green{background:#F0FFF5;border:0.5px solid #7DD4A0;border-left:3px solid #27AE60;border-radius:var(--border-radius-md);padding:12px 14px;margin-bottom:12px}
+.alert-title{font-size:13px;font-weight:500;color:#C0392B;margin-bottom:4px}
+.alert-amber .alert-title{color:#B07800}
+.alert-green .alert-title{color:#1B7A3A}
+.alert-body{font-size:13px;color:var(--color-text-secondary);line-height:1.5}
+.card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:1rem 1.25rem;margin-bottom:12px}
+.card-title{font-size:14px;font-weight:500;color:var(--color-text-primary);margin-bottom:6px}
+.card-sub{font-size:12px;color:var(--color-text-secondary);margin-bottom:8px}
+.badge{display:inline-block;font-size:11px;padding:2px 8px;border-radius:var(--border-radius-md);font-weight:500}
+.badge-red{background:#FFECEB;color:#A32D2D}
+.badge-amber{background:#FAEEDA;color:#854F0B}
+.badge-green{background:#EAF3DE;color:#3B6D11}
+.badge-blue{background:#E6F1FB;color:#185FA5}
+.badge-gray{background:#F1EFE8;color:#5F5E5A}
+.day-row{display:grid;grid-template-columns:44px 1fr;gap:12px;margin-bottom:14px;align-items:start}
+.day-num{width:36px;height:36px;background:#C0392B;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:500;color:#fff;flex-shrink:0}
+.day-special{background:#8B1A0A}
+.day-content{border-left:1px dashed var(--color-border-tertiary);padding-left:12px;padding-bottom:14px}
+.day-date{font-size:11px;color:var(--color-text-tertiary);margin-bottom:2px}
+.day-title{font-size:14px;font-weight:500;color:var(--color-text-primary);margin-bottom:4px}
+.day-items{font-size:13px;color:var(--color-text-secondary);line-height:1.7}
+.cost-table{width:100%;border-collapse:collapse;font-size:13px}
+.cost-table th{text-align:left;font-size:11px;font-weight:500;color:var(--color-text-tertiary);text-transform:uppercase;letter-spacing:0.05em;padding:6px 8px;border-bottom:0.5px solid var(--color-border-tertiary)}
+.cost-table td{padding:8px 8px;border-bottom:0.5px solid var(--color-border-tertiary);color:var(--color-text-primary)}
+.cost-table tr:last-child td{border-bottom:none}
+.cost-table .total td{font-weight:500;border-top:1px solid var(--color-border-secondary);border-bottom:none;background:var(--color-background-secondary);padding:10px 8px}
+.cost-table .eur{color:#185FA5;font-weight:500}
+.cost-table .inr{color:#3B6D11;font-weight:500}
+.cost-table .cat{color:var(--color-text-tertiary);font-size:12px}
+.hostel-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.hostel-card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:14px}
+.hostel-city{font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:0.08em;color:#C0392B;margin-bottom:4px}
+.hostel-name{font-size:14px;font-weight:500;color:var(--color-text-primary);margin-bottom:2px}
+.hostel-price{font-size:12px;color:var(--color-text-secondary);margin-bottom:8px}
+.hostel-tags{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:8px}
+.hostel-link{font-size:12px;color:#185FA5;text-decoration:none;display:flex;align-items:center;gap:4px}
+.hostel-link:hover{text-decoration:underline}
+.stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:1.5rem}
+.stat{background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:12px 10px;text-align:center}
+.stat-label{font-size:11px;color:var(--color-text-tertiary);margin-bottom:4px}
+.stat-val{font-size:18px;font-weight:500;color:var(--color-text-primary)}
+.stat-sub{font-size:11px;color:var(--color-text-secondary);margin-top:2px}
+.tip-row{display:flex;gap:10px;align-items:flex-start;padding:10px 0;border-bottom:0.5px solid var(--color-border-tertiary)}
+.tip-row:last-child{border-bottom:none}
+.tip-icon{width:28px;height:28px;border-radius:50%;background:var(--color-background-secondary);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.tip-text{font-size:13px;color:var(--color-text-secondary);line-height:1.6}
+.tip-text strong{color:var(--color-text-primary);font-weight:500}
+a{color:#185FA5}
+a:hover{text-decoration:underline}
+.section-label{font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:0.07em;color:var(--color-text-tertiary);margin:1.2rem 0 0.6rem}
+.visa-step{display:flex;gap:12px;padding:10px 0;border-bottom:0.5px solid var(--color-border-tertiary)}
+.visa-step:last-child{border-bottom:none}
+.step-num{width:24px;height:24px;background:#C0392B;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:500;color:#fff;flex-shrink:0;margin-top:1px}
+.step-body{font-size:13px;color:var(--color-text-secondary);line-height:1.6}
+.step-body strong{color:var(--color-text-primary);font-weight:500}
+.flight-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:0.5px solid var(--color-border-tertiary)}
+.flight-row:last-child{border-bottom:none}
+.flight-label{font-size:13px;color:var(--color-text-primary)}
+.flight-detail{font-size:12px;color:var(--color-text-secondary)}
+.flight-price{font-size:14px;font-weight:500;color:#3B6D11}
+</style>
+
+<h2 class="sr-only">La Tomatina 2026 — complete travel guide from India</h2>
+
+<div style="padding:1rem 0">
+
+<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;flex-wrap:wrap;gap:8px">
+  <div>
+    <div style="font-size:20px;font-weight:500;color:var(--color-text-primary)">La Tomatina 2026 — India Travel Guide</div>
+    <div style="font-size:13px;color:var(--color-text-secondary);margin-top:2px">12-night itinerary · Aug 20 – Sept 1 · Solo backpacker from India</div>
+  </div>
+  <span class="badge badge-red">Festival: Aug 26, 2026</span>
+</div>
+
+<div class="alert-red">
+  <div class="alert-title"><i class="ti ti-alert-triangle" aria-hidden="true"></i> Urgent — act today (May 26)</div>
+  <div class="alert-body">Tomatina tickets sell out March–June · Visa needs 15-25 days · August flights rising fast. See "Urgency" tab.</div>
+</div>
+
+<nav class="tabs" role="tablist">
+  <button class="tab active" onclick="switchTab('urgent')" role="tab">Urgency</button>
+  <button class="tab" onclick="switchTab('itinerary')" role="tab">Itinerary</button>
+  <button class="tab" onclick="switchTab('costs')" role="tab">Costs</button>
+  <button class="tab" onclick="switchTab('stays')" role="tab">Accommodation</button>
+  <button class="tab" onclick="switchTab('flights')" role="tab">Flights & Visa</button>
+  <button class="tab" onclick="switchTab('tips')" role="tab">Savings Tips</button>
+</nav>
+
+<div id="urgent" class="panel active">
+  <div class="stat-grid">
+    <div class="stat"><div class="stat-label">Days to festival</div><div class="stat-val" style="color:#C0392B">92</div><div class="stat-sub">Aug 26, 2026</div></div>
+    <div class="stat"><div class="stat-label">Tomatina ticket</div><div class="stat-val">€45</div><div class="stat-sub">Bus from Valencia</div></div>
+    <div class="stat"><div class="stat-label">Visa fees</div><div class="stat-val">₹10,847</div><div class="stat-sub">Schengen Spain</div></div>
+    <div class="stat"><div class="stat-label">Trip budget</div><div class="stat-val">~₹1.4L</div><div class="stat-sub">Comfortable</div></div>
+  </div>
+
+  <div class="alert-red">
+    <div class="alert-title">1. Tomatina tickets — check right now</div>
+    <div class="alert-body">The Tomatina + Bus from Valencia package is <strong>€45</strong>. Tickets historically sell out between March–June. Since today is May 26, they may already be gone or nearly sold out. Check <a href="https://tomatina.es/en/" target="_blank">tomatina.es/en</a> immediately. If sold out, try <a href="https://www.latomatinatours.com/" target="_blank">latomatinatours.com</a> or <a href="https://www.pptravel.com/tour.asp?EID=LT&TID=LTD" target="_blank">PP Travel (from £129)</a>.</div>
+  </div>
+
+  <div class="alert-red">
+    <div class="alert-title">2. Schengen visa — apply this week</div>
+    <div class="alert-body">You can apply up to 3 months before travel. Processing is <strong>15–25 working days</strong> (can extend to 45–60 days in peak season). If you're flying Aug 20, apply no later than <strong>June 10</strong> to stay safe. Apply via <a href="https://india.blsspainvisa.com/" target="_blank">BLS International (india.blsspainvisa.com)</a>. Cost: ₹8,920 embassy fee + ₹1,675 service = <strong>₹10,595–₹10,847</strong>. If based in Bengaluru, the BLS centre is in Bengaluru — no need to travel to Delhi.</div>
+  </div>
+
+  <div class="alert-amber">
+    <div class="alert-title">3. Flights — book within the week</div>
+    <div class="alert-body">August is peak season. DEL → BCN roundtrip is currently <strong>₹55,000–₹68,000</strong> (1 stop via Qatar, Etihad, or Lufthansa). Every day of delay = higher prices. Best route: <strong>Delhi → Barcelona</strong> (arrive), <strong>Madrid → Delhi</strong> (return). Search on <a href="https://www.google.com/flights" target="_blank">Google Flights</a> or <a href="https://www.skyscanner.co.in" target="_blank">Skyscanner</a>. Enable price alerts now.</div>
+  </div>
+
+  <div class="alert-green">
+    <div class="alert-title">4. Hostel pre-booking for Valencia</div>
+    <div class="alert-body">Valencia hostels around Tomatina week (Aug 24–28) fill up fast. Book your Valencia hostel on <a href="https://www.hostelworld.com/" target="_blank">Hostelworld</a> ASAP. Barcelona and Madrid are less time-sensitive but book at least 6 weeks out.</div>
+  </div>
+
+  <div class="card" style="margin-top:1rem">
+    <div class="card-title">Your action checklist — this week</div>
+    <div style="display:grid;gap:8px;margin-top:8px">
+      <div style="display:flex;gap:10px;align-items:center;font-size:13px"><span style="width:20px;height:20px;border-radius:4px;border:0.5px solid #C0392B;display:flex;align-items:center;justify-content:center;flex-shrink:0"><i class="ti ti-check" style="font-size:12px;color:#C0392B" aria-hidden="true"></i></span><span>Check ticket availability at <a href="https://tomatina.es/en/" target="_blank">tomatina.es/en</a> — buy immediately or book a tour package</span></div>
+      <div style="display:flex;gap:10px;align-items:center;font-size:13px"><span style="width:20px;height:20px;border-radius:4px;border:0.5px solid #C0392B;display:flex;align-items:center;justify-content:center;flex-shrink:0"><i class="ti ti-check" style="font-size:12px;color:#C0392B" aria-hidden="true"></i></span><span>Book appointment at BLS Spain Visa (Bengaluru) — <a href="https://india.blsspainvisa.com/" target="_blank">india.blsspainvisa.com</a></span></div>
+      <div style="display:flex;gap:10px;align-items:center;font-size:13px"><span style="width:20px;height:20px;border-radius:4px;border:0.5px solid #C0392B;display:flex;align-items:center;justify-content:center;flex-shrink:0"><i class="ti ti-check" style="font-size:12px;color:#C0392B" aria-hidden="true"></i></span><span>Search flights on <a href="https://www.google.com/flights" target="_blank">Google Flights</a> — set price alert for DEL-BCN Aug 20–21 and MAD-DEL Sept 1–2</span></div>
+      <div style="display:flex;gap:10px;align-items:center;font-size:13px"><span style="width:20px;height:20px;border-radius:4px;border:0.5px solid #C0392B;display:flex;align-items:center;justify-content:center;flex-shrink:0"><i class="ti ti-check" style="font-size:12px;color:#C0392B" aria-hidden="true"></i></span><span>Book Valencia hostel for Aug 24–28 on <a href="https://www.hostelworld.com/" target="_blank">Hostelworld</a></span></div>
+      <div style="display:flex;gap:10px;align-items:center;font-size:13px"><span style="width:20px;height:20px;border-radius:4px;border:0.5px solid #C0392B;display:flex;align-items:center;justify-content:center;flex-shrink:0"><i class="ti ti-check" style="font-size:12px;color:#C0392B" aria-hidden="true"></i></span><span>Get travel insurance quote — required for Schengen visa</span></div>
+    </div>
+  </div>
+</div>
+
+<div id="itinerary" class="panel">
+  <div style="font-size:13px;color:var(--color-text-secondary);margin-bottom:1rem;line-height:1.6">12 nights, 13 days. Fly into Barcelona, end in Madrid. Route: <strong style="color:var(--color-text-primary)">Delhi → Barcelona → Valencia → Buñol → Valencia → Madrid → Delhi</strong></div>
+  
+  <div class="day-row">
+    <div class="day-num">1</div>
+    <div class="day-content">
+      <div class="day-date">Thu, Aug 20</div>
+      <div class="day-title">Depart Delhi</div>
+      <div class="day-items">Evening/night flight from Delhi (Indira Gandhi Intl). 1-stop via Doha, Dubai, or Frankfurt. ~10–14 hr total journey.</div>
+    </div>
+  </div>
+  <div class="day-row">
+    <div class="day-num">2</div>
+    <div class="day-content">
+      <div class="day-date">Fri, Aug 21</div>
+      <div class="day-title">Arrive Barcelona — recover</div>
+      <div class="day-items">Land at El Prat (BCN). Metro to hostel. Rest, light walk around Gothic Quarter, early dinner. Jet lag recovery — don't push it.</div>
+    </div>
+  </div>
+  <div class="day-row">
+    <div class="day-num">3</div>
+    <div class="day-content">
+      <div class="day-date">Sat, Aug 22</div>
+      <div class="day-title">Barcelona — main day</div>
+      <div class="day-items">
+        <a href="https://www.sagradafamilia.org/en/" target="_blank">Sagrada Família</a> (book in advance, €26–€36) · Gothic Quarter walk · <a href="https://www.boqueria.barcelona/en" target="_blank">La Boqueria market</a> · Las Ramblas · beach sunset at Barceloneta · optional pub crawl at night
+      </div>
+    </div>
+  </div>
+  <div class="day-row">
+    <div class="day-num">4</div>
+    <div class="day-content">
+      <div class="day-date">Sun, Aug 23</div>
+      <div class="day-title">Barcelona — Gaudí & Gràcia</div>
+      <div class="day-items"><a href="https://www.parkguell.barcelona/en/" target="_blank">Park Güell</a> (€10, book ahead) · Gràcia neighbourhood cafés · <a href="https://www.casabatllo.es/en/" target="_blank">Casa Batlló exterior walk</a> · free walking tour · beach/nightlife if you want</div>
+    </div>
+  </div>
+  <div class="day-row">
+    <div class="day-num">5</div>
+    <div class="day-content">
+      <div class="day-date">Mon, Aug 24</div>
+      <div class="day-title">Barcelona → Valencia by train</div>
+      <div class="day-items"><a href="https://www.renfe.com/en/en" target="_blank">Renfe train</a> BCN→Valencia (~3.5 hr, from €25 booked ahead). Arrive afternoon. Check into hostel. Evening walk in Valencia Old Town · <a href="https://www.centralvalencia.es/" target="_blank">Mercado Central</a> · Turia riverbed gardens walk.</div>
+    </div>
+  </div>
+  <div class="day-row">
+    <div class="day-num">6</div>
+    <div class="day-content">
+      <div class="day-date">Tue, Aug 25</div>
+      <div class="day-title">Valencia — Arts & Sciences</div>
+      <div class="day-items"><a href="https://www.cac.es/en/home.html" target="_blank">City of Arts and Sciences</a> (from €8 for Hemisphèric, €14+ full complex) · Valencia Cathedral & Miguelete tower · paella lunch (birthplace of the dish) · beach clubs · Tomatina pre-party at hostel/night out</div>
+    </div>
+  </div>
+  <div class="day-row">
+    <div class="day-num" style="background:#8B1A0A">7</div>
+    <div class="day-content">
+      <div class="day-date">Wed, Aug 26</div>
+      <div class="day-title" style="color:#C0392B">LA TOMATINA — Buñol</div>
+      <div class="day-items">
+        Early morning: coach from Valencia to Buñol (departs 6:30–8:30am from multiple points per <a href="https://tomatina.es/en/tomatina-from-valencia/" target="_blank">tomatina.es Valencia package</a>). Palo Jabón (greased pole event) · tomato fight starts 12:00, ends ~13:00 · shower up · return coach to Valencia by 15:30. Evening: official after-party. Pack: old clothes, goggles, waterproof pouch, old shoes you can throw away.
+      </div>
+    </div>
+  </div>
+  <div class="day-row">
+    <div class="day-num">8</div>
+    <div class="day-content">
+      <div class="day-date">Thu, Aug 27</div>
+      <div class="day-title">Valencia — recovery day</div>
+      <div class="day-items">You will be exhausted. Beach, food, hostel hangouts. Light old town wander. Albufera Natural Park optional (flamingos, rice fields — where paella originated). Laundry day.</div>
+    </div>
+  </div>
+  <div class="day-row">
+    <div class="day-num">9</div>
+    <div class="day-content">
+      <div class="day-date">Fri, Aug 28</div>
+      <div class="day-title">Valencia — final explore</div>
+      <div class="day-items">Barrio del Carmen (arts neighbourhood) · street art · Ruzafa for coffee and brunch · beach one last time · evening socialising at hostel</div>
+    </div>
+  </div>
+  <div class="day-row">
+    <div class="day-num">10</div>
+    <div class="day-content">
+      <div class="day-date">Sat, Aug 29</div>
+      <div class="day-title">Valencia → Madrid</div>
+      <div class="day-items"><a href="https://www.renfe.com/en/en" target="_blank">AVE high-speed train</a> (~1.5 hr, from €20 booked ahead) or FlixBus (~4 hr, from €10). Arrive Madrid. Check in. Evening walk on Gran Vía, dinner at Mercado de San Miguel.</div>
+    </div>
+  </div>
+  <div class="day-row">
+    <div class="day-num">11</div>
+    <div class="day-content">
+      <div class="day-date">Sun, Aug 30</div>
+      <div class="day-title">Madrid — historic city</div>
+      <div class="day-items"><a href="https://www.museodelprado.es/en" target="_blank">Prado Museum</a> (€15, free Tues 6–8pm) · <a href="https://www.museosorolla.es/en/" target="_blank">Museo Sorolla</a> · Retiro Park · Plaza Mayor · famous Madrid nightlife (starts very late, often 2am)</div>
+    </div>
+  </div>
+  <div class="day-row">
+    <div class="day-num">12</div>
+    <div class="day-content">
+      <div class="day-date">Mon, Aug 31</div>
+      <div class="day-title">Madrid — chill and souvenir day</div>
+      <div class="day-items">Malasaña neighbourhood (indie cafés, vintage shops) · <a href="https://www.esmadrid.com/en/tourist-information/rastro-market" target="_blank">El Rastro flea market</a> (Sundays only — swap to Sun if needed) · final tapas crawl. Pack and prep for flight.</div>
+    </div>
+  </div>
+  <div class="day-row">
+    <div class="day-num">13</div>
+    <div class="day-content">
+      <div class="day-date">Tue, Sept 1</div>
+      <div class="day-title">Fly Madrid → Delhi</div>
+      <div class="day-items">Madrid Barajas (MAD) → Delhi. Check your flight time — airport is well-connected by Metro line 8 from central Madrid.</div>
+    </div>
+  </div>
+</div>
+
+<div id="costs" class="panel">
+  <div style="font-size:13px;color:var(--color-text-secondary);margin-bottom:1rem">All EUR costs converted at ₹93 = €1. Prices are realistic estimates for Aug 2026. Exchange rate varies — verify before travel.</div>
+  
+  <table class="cost-table" style="margin-bottom:1.5rem">
+    <thead>
+      <tr><th>Category</th><th>Details</th><th class="eur">EUR</th><th class="inr">INR</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>Flights (roundtrip)</strong></td><td class="cat">DEL→BCN + MAD→DEL, 1 stop, Aug peak</td><td class="eur">~€645</td><td class="inr">₹60,000</td></tr>
+      <tr><td><strong>Schengen Visa</strong></td><td class="cat">Embassy fee + BLS service charge</td><td class="eur">~€117</td><td class="inr">₹10,847</td></tr>
+      <tr><td><strong>Travel Insurance</strong></td><td class="cat">Mandatory for Schengen, ~12 days</td><td class="eur">€32</td><td class="inr">₹3,000</td></tr>
+      <tr><td><strong>Tomatina ticket</strong></td><td class="cat">Entry + Bus from Valencia</td><td class="eur">€45</td><td class="inr">₹4,185</td></tr>
+      <tr><td><strong>Barcelona hostel</strong></td><td class="cat">3 nights dorm @ €22/night (+ tourist tax ~€3/night)</td><td class="eur">€75</td><td class="inr">₹6,975</td></tr>
+      <tr><td><strong>Valencia hostel</strong></td><td class="cat">5 nights dorm @ €20/night</td><td class="eur">€100</td><td class="inr">₹9,300</td></tr>
+      <tr><td><strong>Madrid hostel</strong></td><td class="cat">2 nights dorm @ €22/night</td><td class="eur">€44</td><td class="inr">₹4,092</td></tr>
+      <tr><td><strong>Train BCN → Valencia</strong></td><td class="cat">Renfe, ~3.5 hr, booked in advance</td><td class="eur">€30</td><td class="inr">₹2,790</td></tr>
+      <tr><td><strong>Train Valencia → Madrid</strong></td><td class="cat">AVE high-speed, ~1.5 hr, booked ahead</td><td class="eur">€25</td><td class="inr">₹2,325</td></tr>
+      <tr><td><strong>Food</strong></td><td class="cat">€22/day × 13 days (hostel kitchen + cheap eats)</td><td class="eur">€286</td><td class="inr">₹26,598</td></tr>
+      <tr><td><strong>Activities</strong></td><td class="cat">Sagrada Familia, Park Güell, City of Arts, Prado etc.</td><td class="eur">€80</td><td class="inr">₹7,440</td></tr>
+      <tr><td><strong>Local transport</strong></td><td class="cat">Metro + T-Casual 10-trip cards in each city</td><td class="eur">€40</td><td class="inr">₹3,720</td></tr>
+      <tr><td><strong>Spanish SIM</strong></td><td class="cat">Prepaid data SIM at Barcelona airport</td><td class="eur">€15</td><td class="inr">₹1,395</td></tr>
+      <tr><td><strong>Emergency buffer</strong></td><td class="cat">Lost items, extra meals, spontaneous plans</td><td class="eur">€60</td><td class="inr">₹5,580</td></tr>
+    </tbody>
+    <tfoot>
+      <tr class="total"><td colspan="2"><strong>Total (comfortable student budget)</strong></td><td class="eur"><strong>~€1,599</strong></td><td class="inr"><strong>~₹1,48,712</strong></td></tr>
+    </tfoot>
+  </table>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px">
+    <div class="card" style="border-color:#7DD4A0">
+      <div class="card-title" style="color:#27AE60">Budget (tight)</div>
+      <div style="font-size:22px;font-weight:500;color:var(--color-text-primary);margin:4px 0">~₹1.15L</div>
+      <div class="card-sub">Cheapest flights, dorm beds, hostel kitchen, free attractions. No nights out.</div>
+    </div>
+    <div class="card" style="border-color:#C0392B;border-width:1.5px">
+      <div class="badge badge-red" style="margin-bottom:6px">Recommended</div>
+      <div class="card-title">Comfortable</div>
+      <div style="font-size:22px;font-weight:500;color:var(--color-text-primary);margin:4px 0">~₹1.4–1.5L</div>
+      <div class="card-sub">Good hostels, occasional restaurant, a few paid attractions, some nightlife.</div>
+    </div>
+    <div class="card">
+      <div class="card-title">Comfortable+</div>
+      <div style="font-size:22px;font-weight:500;color:var(--color-text-primary);margin:4px 0">~₹1.8–2L</div>
+      <div class="card-sub">Private hostel rooms some nights, nicer restaurants, day trips, shopping.</div>
+    </div>
+  </div>
+
+  <div class="alert-amber" style="margin-top:1rem">
+    <div class="alert-title">Barcelona tourist tax — 2026 increase</div>
+    <div class="alert-body">Catalonia doubled its tourist accommodation tax from April 1, 2026. For hostel dorm beds it's roughly €3–5 per person per night. Expect to pay this at check-in or verify it's included in your booking. Factored into the estimate above.</div>
+  </div>
+</div>
+
+<div id="stays" class="panel">
+  <div class="section-label">Barcelona — 3 nights (Aug 21–24)</div>
+  <div class="hostel-grid">
+    <div class="hostel-card">
+      <div class="hostel-city">Barcelona</div>
+      <div class="hostel-name">Sant Jordi Hostel — Sagrada Familia</div>
+      <div class="hostel-price">~€20–28/night dorm · rated 9.0+</div>
+      <div class="hostel-tags"><span class="badge badge-green">Social</span><span class="badge badge-blue">Central</span><span class="badge badge-gray">Walking tours</span></div>
+      <div style="font-size:12px;color:var(--color-text-secondary);margin-bottom:8px">Skate-culture theme, vibrant atmosphere, right near Gaudí's masterpiece. Free walking tours, pub crawls.</div>
+      <a class="hostel-link" href="https://www.santjordihostels.com/" target="_blank"><i class="ti ti-external-link" style="font-size:14px" aria-hidden="true"></i> santjordihostels.com</a>
+    </div>
+    <div class="hostel-card">
+      <div class="hostel-city">Barcelona</div>
+      <div class="hostel-name">Generator Barcelona</div>
+      <div class="hostel-price">~€22–32/night dorm · rated 8.8+</div>
+      <div class="hostel-tags"><span class="badge badge-green">Social</span><span class="badge badge-blue">Bar on-site</span></div>
+      <div style="font-size:12px;color:var(--color-text-secondary);margin-bottom:8px">Stylish design hostel with bar/lounge. Popular with solo travelers. Gothic Quarter location. Easy to meet people.</div>
+      <a class="hostel-link" href="https://staygenerator.com/hostels/barcelona" target="_blank"><i class="ti ti-external-link" style="font-size:14px" aria-hidden="true"></i> staygenerator.com</a>
+    </div>
+  </div>
+  <div style="font-size:12px;color:var(--color-text-secondary);margin:8px 0 1rem">Browse and compare all Barcelona hostels: <a href="https://www.hostelworld.com/hostels/europe/spain/barcelona/" target="_blank">hostelworld.com/Barcelona</a> · <a href="https://www.hostelz.com/hostels/Spain/Barcelona" target="_blank">hostelz.com</a></div>
+
+  <div class="section-label">Valencia — 5 nights (Aug 24–29)</div>
+  <div class="hostel-grid">
+    <div class="hostel-card">
+      <div class="hostel-city">Valencia</div>
+      <div class="hostel-name">Purple Nest Hostel</div>
+      <div class="hostel-price">~€18–25/night dorm · rated 9.0+</div>
+      <div class="hostel-tags"><span class="badge badge-green">Top-rated</span><span class="badge badge-blue">Central</span><span class="badge badge-red">Tomatina crowd</span></div>
+      <div style="font-size:12px;color:var(--color-text-secondary);margin-bottom:8px">One of Valencia's most social hostels. Right in the city centre, attracts Tomatina travelers — easy to find people for the festival.</div>
+      <a class="hostel-link" href="https://www.hostelworld.com/st/hostels/p/234/purple-nest-hostel/" target="_blank"><i class="ti ti-external-link" style="font-size:14px" aria-hidden="true"></i> Book on Hostelworld</a>
+    </div>
+    <div class="hostel-card">
+      <div class="hostel-city">Valencia</div>
+      <div class="hostel-name">Home Youth Hostel</div>
+      <div class="hostel-price">~€15–22/night dorm · rated 8.8+</div>
+      <div class="hostel-tags"><span class="badge badge-green">Social</span><span class="badge badge-gray">Kitchen</span></div>
+      <div style="font-size:12px;color:var(--color-text-secondary);margin-bottom:8px">Friendly social atmosphere, well-equipped kitchen. Excellent location near Old Town. Regular events and bar crawls.</div>
+      <a class="hostel-link" href="https://www.hostelworld.com/hosteldetails.php/Home-Youth-Hostel/Valencia/22476" target="_blank"><i class="ti ti-external-link" style="font-size:14px" aria-hidden="true"></i> Book on Hostelworld</a>
+    </div>
+  </div>
+  <div style="font-size:12px;color:var(--color-text-secondary);margin:8px 0 1rem">Browse all: <a href="https://www.hostelworld.com/hostels/europe/spain/valencia/" target="_blank">hostelworld.com/Valencia</a></div>
+
+  <div class="section-label">Madrid — 2 nights (Aug 29–31)</div>
+  <div class="hostel-grid">
+    <div class="hostel-card">
+      <div class="hostel-city">Madrid</div>
+      <div class="hostel-name">Way Hostel Madrid</div>
+      <div class="hostel-price">~€18–25/night dorm · rated 9.2+</div>
+      <div class="hostel-tags"><span class="badge badge-green">Top-rated</span><span class="badge badge-blue">Near Atocha</span></div>
+      <div style="font-size:12px;color:var(--color-text-secondary);margin-bottom:8px">Consistently one of Madrid's highest-rated hostels. Friendly staff, clean dorms, great location near train station for easy arrival.</div>
+      <a class="hostel-link" href="https://www.wayhostel.com/" target="_blank"><i class="ti ti-external-link" style="font-size:14px" aria-hidden="true"></i> wayhostel.com</a>
+    </div>
+    <div class="hostel-card">
+      <div class="hostel-city">Madrid</div>
+      <div class="hostel-name">Generator Madrid</div>
+      <div class="hostel-price">~€22–30/night dorm · rated 8.7+</div>
+      <div class="hostel-tags"><span class="badge badge-green">Social</span><span class="badge badge-blue">Bar</span></div>
+      <div style="font-size:12px;color:var(--color-text-secondary);margin-bottom:8px">Same chain as Barcelona Generator. Stylish with great bar, near Gran Vía. Perfect for 2-night stay with Madrid nightlife.</div>
+      <a class="hostel-link" href="https://staygenerator.com/hostels/madrid" target="_blank"><i class="ti ti-external-link" style="font-size:14px" aria-hidden="true"></i> staygenerator.com</a>
+    </div>
+  </div>
+  <div style="font-size:12px;color:var(--color-text-secondary);margin:8px 0">Browse all: <a href="https://www.hostelworld.com/hostels/europe/spain/madrid/" target="_blank">hostelworld.com/Madrid</a></div>
+
+  <div class="alert-amber" style="margin-top:1rem">
+    <div class="alert-title">Booking tip</div>
+    <div class="alert-body">Always check both <a href="https://www.hostelworld.com/" target="_blank">Hostelworld</a> and <a href="https://www.booking.com/" target="_blank">Booking.com</a> — prices differ. Look for free cancellation bookings since your visa status is pending. Filter for 8.0+ ratings, lockers, and mixed dorms for best value + safety.</div>
+  </div>
+</div>
+
+<div id="flights" class="panel">
+  <div class="section-label">Flights</div>
+  <div class="card">
+    <div class="card-title">Recommended route</div>
+    <div style="display:flex;align-items:center;gap:8px;margin:10px 0;flex-wrap:wrap">
+      <span style="font-size:13px;font-weight:500">Delhi (DEL)</span>
+      <i class="ti ti-arrow-right" style="font-size:14px;color:var(--color-text-secondary)" aria-hidden="true"></i>
+      <span style="font-size:13px;font-weight:500">Barcelona (BCN)</span>
+      <span style="font-size:12px;color:var(--color-text-secondary)">arrive ~Aug 21</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:8px;margin:10px 0;flex-wrap:wrap">
+      <span style="font-size:13px;font-weight:500">Madrid (MAD)</span>
+      <i class="ti ti-arrow-right" style="font-size:14px;color:var(--color-text-secondary)" aria-hidden="true"></i>
+      <span style="font-size:13px;font-weight:500">Delhi (DEL)</span>
+      <span style="font-size:12px;color:var(--color-text-secondary)">depart Sept 1</span>
+    </div>
+    <div style="font-size:12px;color:var(--color-text-secondary);margin-top:4px">Open-jaw route — avoids backtracking to Barcelona. No extra cost vs roundtrip from same city.</div>
+  </div>
+
+  <div class="card">
+    <div class="flight-row" style="background: #EAF3DE; padding: 12px; border-radius: 8px; border: 1px solid #7DD4A0; margin-bottom: 8px;">
+      <div>
+        <div class="flight-label">Qatar Airways (Outbound Aug 18) <span class="badge badge-green">Exact Match</span></div>
+        <div class="flight-detail">DEL 15:55 → DOH → BCN 07:30<sup>+1</sup> · 1 stop (19h 05m)</div>
+      </div>
+      <div class="flight-price">₹32,494 <span style="font-size:10px;color:var(--color-text-secondary);font-weight:400">One-way</span></div>
+    </div>
+    <div class="flight-row">
+      <div><div class="flight-label">Qatar Airways</div><div class="flight-detail">DEL → DOH → BCN · 1 stop · ~11–13 hr</div></div>
+      <div class="flight-price">₹56,000–68,000 RT</div>
+    </div>
+    <div class="flight-row">
+      <div><div class="flight-label">Etihad Airways</div><div class="flight-detail">DEL → AUH → BCN · 1 stop · ~10–13 hr</div></div>
+      <div class="flight-price">₹55,000–65,000 RT</div>
+    </div>
+    <div class="flight-row">
+      <div><div class="flight-label">Lufthansa</div><div class="flight-detail">DEL → FRA/MUC → BCN · 1 stop · ~12–14 hr</div></div>
+      <div class="flight-price">₹58,000–72,000 RT</div>
+    </div>
+    <div class="flight-row">
+      <div><div class="flight-label">Turkish Airlines</div><div class="flight-detail">DEL → IST → BCN · 1 stop</div></div>
+      <div class="flight-price">₹52,000–65,000 RT</div>
+    </div>
+  </div>
+  <div style="font-size:12px;color:var(--color-text-secondary);margin-bottom:1rem">Prices for August 2026 — peak season. Search on <a href="https://www.google.com/flights" target="_blank">Google Flights</a>, <a href="https://www.skyscanner.co.in" target="_blank">Skyscanner</a>, <a href="https://www.makemytrip.com/" target="_blank">MakeMyTrip</a>. Book ASAP.</div>
+
+  <div class="section-label">Schengen Visa (Spain)</div>
+  <div class="card">
+    <div class="visa-step">
+      <div class="step-num">1</div>
+      <div class="step-body"><strong>Gather documents</strong> — Passport (valid 3+ months after Sept 1), flight bookings, hostel confirmations, bank statements (6 months), college ID, travel insurance, ITR/salary slips, cover letter, photos</div>
+    </div>
+    <div class="visa-step">
+      <div class="step-num">2</div>
+      <div class="step-body"><strong>Book appointment at BLS Bengaluru</strong> — <a href="https://india.blsspainvisa.com/" target="_blank">india.blsspainvisa.com</a>. Apply within 3 months of travel = apply now. Slots fill up fast in summer.</div>
+    </div>
+    <div class="visa-step">
+      <div class="step-num">3</div>
+      <div class="step-body"><strong>Pay fees</strong> — Embassy fee: ₹8,920 · BLS service: ₹1,675 · Total: ~₹10,595–10,847. Pay online or at centre.</div>
+    </div>
+    <div class="visa-step">
+      <div class="step-num">4</div>
+      <div class="step-body"><strong>Biometrics + submission</strong> — Appear in person at BLS Bengaluru. Give fingerprints if not given in last 5 years.</div>
+    </div>
+    <div class="visa-step">
+      <div class="step-num">5</div>
+      <div class="step-body"><strong>Wait 15–25 days</strong> (can extend to 60 in peak season). Track at BLS portal. Apply by <strong>June 10 latest</strong> for an Aug 20 departure.</div>
+    </div>
+  </div>
+
+  <div class="section-label">Internal Spain transport</div>
+  <div class="card">
+    <div class="flight-row">
+      <div><div class="flight-label">Barcelona → Valencia</div><div class="flight-detail"><a href="https://www.renfe.com/en/en" target="_blank">Renfe</a> train · ~3.5 hr · book 4–6 weeks ahead</div></div>
+      <div class="flight-price">€25–45</div>
+    </div>
+    <div class="flight-row">
+      <div><div class="flight-label">Valencia → Madrid</div><div class="flight-detail"><a href="https://www.renfe.com/en/en" target="_blank">AVE Renfe</a> high-speed · ~1.5 hr · OR <a href="https://www.flixbus.co.uk" target="_blank">FlixBus</a> ~4hr</div></div>
+      <div class="flight-price">€15–40</div>
+    </div>
+    <div class="flight-row">
+      <div><div class="flight-label">Valencia → Buñol (Tomatina day)</div><div class="flight-detail">Coach included in <a href="https://tomatina.es/en/tomatina-from-valencia/" target="_blank">official Valencia package</a></div></div>
+      <div class="flight-price">Included</div>
+    </div>
+    <div class="flight-row">
+      <div><div class="flight-label">Local metro/bus</div><div class="flight-detail">T-Casual 10-trip card in each city · buy at any metro station</div></div>
+      <div class="flight-price">~€11–12 each</div>
+    </div>
+  </div>
+  <div style="font-size:12px;color:var(--color-text-secondary);margin-top:4px">Compare trains + buses at once: <a href="https://www.omio.com/" target="_blank">omio.com</a></div>
+</div>
+
+<div id="tips" class="panel">
+  <div class="section-label">Biggest savings levers</div>
+  <div class="card">
+    <div class="tip-row">
+      <div class="tip-icon"><i class="ti ti-plane" style="font-size:14px;color:var(--color-text-secondary)" aria-hidden="true"></i></div>
+      <div class="tip-text"><strong>Book flights today.</strong> August prices for India-Europe are rising daily. Every week you wait could add ₹3,000–8,000 to the fare. Set a Google Flights price alert right now at ₹58,000 RT.</div>
+    </div>
+    <div class="tip-row">
+      <div class="tip-icon"><i class="ti ti-building" style="font-size:14px;color:var(--color-text-secondary)" aria-hidden="true"></i></div>
+      <div class="tip-text"><strong>Hostel kitchen = cut food costs by 40%.</strong> Breakfast and one meal a day from the hostel kitchen easily saves €8–10/day. Supermarkets: Mercadona, Lidl, Carrefour.</div>
+    </div>
+    <div class="tip-row">
+      <div class="tip-icon"><i class="ti ti-map-pin" style="font-size:14px;color:var(--color-text-secondary)" aria-hidden="true"></i></div>
+      <div class="tip-text"><strong>Free attractions are excellent.</strong> Barcelona Cathedral, Gothic Quarter, Barceloneta beach, La Boqueria (browse free), Valencia's Turia Gardens, Retiro Park Madrid, walking neighbourhoods — easily fills 3 days at €0.</div>
+    </div>
+    <div class="tip-row">
+      <div class="tip-icon"><i class="ti ti-ticket" style="font-size:14px;color:var(--color-text-secondary)" aria-hidden="true"></i></div>
+      <div class="tip-text"><strong>Prado Museum free on Tuesday 6–8pm.</strong> Worth timing your Madrid day around this. City of Arts and Sciences in Valencia has cheaper combo passes — check <a href="https://www.cac.es/en/home.html" target="_blank">cac.es</a> for current options.</div>
+    </div>
+    <div class="tip-row">
+      <div class="tip-icon"><i class="ti ti-lunch-box" style="font-size:14px;color:var(--color-text-secondary)" aria-hidden="true"></i></div>
+      <div class="tip-text"><strong>Menú del día = best value eat.</strong> Spanish lunch set menus (menú del día, €10–14) typically include 3 courses + drink. Order lunch as your main meal; dinner can be tapas or hostel cooked food.</div>
+    </div>
+    <div class="tip-row">
+      <div class="tip-icon"><i class="ti ti-bus" style="font-size:14px;color:var(--color-text-secondary)" aria-hidden="true"></i></div>
+      <div class="tip-text"><strong>Train over flight for internal travel.</strong> Barcelona→Valencia by train (€25–35 booked early) beats flying once you add airport time. Same for Valencia→Madrid AVE. Book on <a href="https://www.renfe.com/en/en" target="_blank">Renfe</a> at least 3–4 weeks out.</div>
+    </div>
+    <div class="tip-row">
+      <div class="tip-icon"><i class="ti ti-device-mobile" style="font-size:14px;color:var(--color-text-secondary)" aria-hidden="true"></i></div>
+      <div class="tip-text"><strong>Spanish SIM at BCN airport.</strong> Orange, Vodafone, or Lebara SIM (~€15) covers all of Spain with 15–20GB data. Much cheaper than roaming. Alternatively, buy an EU eSIM on <a href="https://www.airalo.com/" target="_blank">Airalo</a> before departure.</div>
+    </div>
+    <div class="tip-row">
+      <div class="tip-icon"><i class="ti ti-shirt" style="font-size:14px;color:var(--color-text-secondary)" aria-hidden="true"></i></div>
+      <div class="tip-text"><strong>Tomatina clothes from home, not Spain.</strong> Bring old clothes from India (₹100–200 from local market) for the tomato fight. Don't buy them in Spain — far more expensive. Bring a cheap pair of sandals too.</div>
+    </div>
+    <div class="tip-row">
+      <div class="tip-icon"><i class="ti ti-map-2" style="font-size:14px;color:var(--color-text-secondary)" aria-hidden="true"></i></div>
+      <div class="tip-text"><strong>Download offline maps before you go.</strong> Google Maps offline packs for Barcelona, Valencia, and Madrid. Also download the Spanish phrasebook in Google Translate for offline use.</div>
+    </div>
+  </div>
+  
+  <div class="section-label">Key links — bookmark these</div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+    <a href="https://tomatina.es/en/" target="_blank" class="card" style="text-decoration:none;display:block">
+      <div class="card-title" style="color:#C0392B"><i class="ti ti-ticket" style="font-size:14px;margin-right:4px" aria-hidden="true"></i>tomatina.es — Official tickets</div>
+      <div class="card-sub">Buy entry ticket. Check availability now.</div>
+    </a>
+    <a href="https://india.blsspainvisa.com/" target="_blank" class="card" style="text-decoration:none;display:block">
+      <div class="card-title"><i class="ti ti-id-badge" style="font-size:14px;margin-right:4px" aria-hidden="true"></i>BLS Spain Visa India</div>
+      <div class="card-sub">Schengen visa application, Bengaluru centre</div>
+    </a>
+    <a href="https://www.google.com/flights" target="_blank" class="card" style="text-decoration:none;display:block">
+      <div class="card-title"><i class="ti ti-plane" style="font-size:14px;margin-right:4px" aria-hidden="true"></i>Google Flights</div>
+      <div class="card-sub">Search + price alerts for Aug flights</div>
+    </a>
+    <a href="https://www.hostelworld.com/" target="_blank" class="card" style="text-decoration:none;display:block">
+      <div class="card-title"><i class="ti ti-building" style="font-size:14px;margin-right:4px" aria-hidden="true"></i>Hostelworld</div>
+      <div class="card-sub">Book hostels — Valencia first</div>
+    </a>
+    <a href="https://www.renfe.com/en/en" target="_blank" class="card" style="text-decoration:none;display:block">
+      <div class="card-title"><i class="ti ti-train" style="font-size:14px;margin-right:4px" aria-hidden="true"></i>Renfe — Spanish trains</div>
+      <div class="card-sub">BCN→Valencia, Valencia→Madrid</div>
+    </a>
+    <a href="https://www.sagradafamilia.org/en/" target="_blank" class="card" style="text-decoration:none;display:block">
+      <div class="card-title"><i class="ti ti-building-arch" style="font-size:14px;margin-right:4px" aria-hidden="true"></i>Sagrada Família</div>
+      <div class="card-sub">Book entry tickets ahead — always sells out</div>
+    </a>
+  </div>
+</div>
+
+</div>
+
+<script>
+function switchTab(id){
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  event.target.classList.add('active');
+}
+</script>

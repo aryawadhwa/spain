@@ -1142,6 +1142,11 @@
             <div class="budget-container">
                 <div class="calc-panel">
                     <div class="calc-group">
+                        <label>Number of People <span id="lbl-people">1 Person</span></label>
+                        <input type="range" class="calc-slider" id="slide-people" min="1" max="10" step="1" value="1" oninput="calculateBudget()">
+                    </div>
+
+                    <div class="calc-group">
                         <label>Outbound Flight Cost (INR) <span id="lbl-flight">₹32,494</span></label>
                         <input type="range" class="calc-slider" id="slide-flight" min="25000" max="65000" step="500" value="32494" oninput="calculateBudget()">
                     </div>
@@ -1176,11 +1181,11 @@
                         </div>
                         <div class="breakdown-row">
                             <span>Tomatina Ticket & Coach:</span>
-                            <strong>₹4,185</strong>
+                            <strong id="val-tomatina">₹4,185</strong>
                         </div>
                         <div class="breakdown-row">
                             <span>Internal Spanish Rail (AVE):</span>
-                            <strong>₹5,115</strong>
+                            <strong id="val-rail">₹5,115</strong>
                         </div>
                     </div>
                 </div>
@@ -1373,10 +1378,12 @@
 
         // Live Budget Estimator
         function calculateBudget() {
+            const people = parseInt(document.getElementById('slide-people').value);
             const flight = parseInt(document.getElementById('slide-flight').value);
             const nights = parseInt(document.getElementById('slide-nights').value);
             const spend = parseInt(document.getElementById('slide-spend').value);
 
+            document.getElementById('lbl-people').innerText = people === 1 ? '1 Person' : `${people} People`;
             document.getElementById('lbl-flight').innerText = `₹${flight.toLocaleString('en-IN')}`;
             document.getElementById('lbl-nights').innerText = `${nights} Nights`;
             document.getElementById('lbl-spend').innerText = `€${spend} / day`;
@@ -1390,12 +1397,28 @@
             const totalHostels = nights * hostelCostPerNightInr;
             const totalSpendInr = spend * 12 * exchangeRate; // Assuming standard 12-day trip spend window
             
-            const totalBudget = flight + visaInsurance + totalHostels + tomatinaTicket + railTickets + totalSpendInr;
+            // Multiply per-person costs by number of people
+            const scaledFlight = flight * people;
+            const scaledVisa = visaInsurance * people;
+            const scaledHostels = totalHostels * people;
+            const scaledTomatina = tomatinaTicket * people;
+            const scaledRail = railTickets * people;
+            const scaledSpend = totalSpendInr * people;
+
+            const totalBudget = scaledFlight + scaledVisa + scaledHostels + scaledTomatina + scaledRail + scaledSpend;
             const totalEur = Math.round(totalBudget / exchangeRate);
 
             document.getElementById('total-inr').innerText = `₹${totalBudget.toLocaleString('en-IN')}`;
             document.getElementById('total-eur').innerText = `€${totalEur.toLocaleString()} total spend`;
-            document.getElementById('val-stays').innerText = `₹${totalHostels.toLocaleString('en-IN')}`;
+            
+            // Update individual breakdown elements dynamically
+            document.getElementById('val-visa').innerText = `₹${scaledVisa.toLocaleString('en-IN')}`;
+            document.getElementById('val-stays').innerText = `₹${scaledHostels.toLocaleString('en-IN')}`;
+            document.getElementById('val-tomatina').innerText = `₹${scaledTomatina.toLocaleString('en-IN')}`;
+            document.getElementById('val-rail').innerText = `₹${scaledRail.toLocaleString('en-IN')}`;
+
+            // Update main stat badge in quick stats (Line 955)
+            document.getElementById('stat-budget').innerText = `₹${(totalBudget/100000).toFixed(2)}L`;
         }
         calculateBudget();
 
